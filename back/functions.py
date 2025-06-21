@@ -1,10 +1,13 @@
 import random
 from openai import OpenAI
 from langchain.memory import ConversationBufferMemory
+from dotenv import load_dotenv
+import os
+
 
 client = OpenAI(
   base_url="https://openrouter.ai/api/v1",
-  api_key="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",
+  api_key=os.getenv("OPENAI_API_KEY"),
 )
 
 # Initialize memory buffer
