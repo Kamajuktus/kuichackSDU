@@ -4,7 +4,7 @@ from langchain.memory import ConversationBufferMemory
 
 client = OpenAI(
   base_url="https://openrouter.ai/api/v1",
-  api_key="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",
+  api_key="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",
 )
 
 # Initialize memory buffer
@@ -104,4 +104,7 @@ def generate_question(subject, difficulty, repeated = False, memory = []) -> str
             ]
         )
 
-    return str(completion.choices[0].message.content)
+    if 'completion' in locals():
+        return str(completion.choices[0].message.content)
+    else:
+        return None
