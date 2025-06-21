@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Be Vietnam Pro';
+  /* transform: scale(0.999); */
+}
+
+body{
+  background-color: #f7f7f7; 
+}
+
+.app_container {
+  max-width: 1145px;
+  margin: 0 auto; /* Центрирование контента */
+}
+

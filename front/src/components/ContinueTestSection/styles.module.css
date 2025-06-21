@@ -1,0 +1,230 @@
+/* styles.module.css */
+
+/* Базовые стили для карточек */
+.card {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.continue-test-section {
+  /* Общие стили для всего раздела */
+  background-color: #f7f7f7; /* Пример: светло-серый фон */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Добавьте отступ снизу, если необходимо */
+}
+
+.continue-test-section h2 {
+  /* Стиль заголовка "Продолжить тест" */
+  font-size: 2.4em;
+  color: #333;
+  margin-bottom: 15px;
+  font-family: Inter;
+}
+
+.card-section {
+  display: flex;
+  flex-direction: row;
+  max-height: 280px;
+}
+
+.test-card {
+  /* Карточка с информацией о тесте */
+  composes: card; /* Используем базовые стили карточки */
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.generation-card {
+  /* Карточка с информацией о генерации */
+  composes: card; /* Используем базовые стили карточки */
+  margin-left: 20px;
+  width: 400px;
+}
+
+.left-section {
+  /* Левая часть карточки с персонажами и информацией */
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Отступ между левой и правой частями */
+}
+
+.characters {
+  /* Контейнер для персонажей */
+  /* margin-right: 15px; */
+}
+
+.relative_parent {
+  position: relative;
+}
+
+/* Объединенные стили для большого текста */
+.big-text-base {
+  font-size: 1.7em;
+  line-height: 1.2;
+  font-weight: bold;
+  color: #333;
+}
+
+.text_under_notebook {
+  composes: big-text-base; /* Используем общие стили */
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  white-space: normal;
+  font-size: 1.4em;
+}
+
+.big-text-continue {
+  composes: big-text-base; /* Используем общие стили */
+  font-size: 2.7em;
+  margin-top: 25px;
+  margin-bottom: 5px; /* Добавляет отступ снизу */
+}
+
+.big-text {
+  composes: big-text-base; /* Используем общие стили */
+  margin-top: 25px;
+  margin-bottom: 5px; /* Добавляет отступ снизу */
+}
+
+.character:first-child {
+  margin-left: 0;
+}
+
+.test-info {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.test-info h3 {
+  /* Название теста */
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.subjects {
+  /* Список предметов */
+  color: #777;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.progress-info {
+  /* Информация о прогрессе */
+  margin-bottom: 15px;
+}
+
+.progress-info p {
+  margin-bottom: 5px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.progress-wrapper {
+  display: flex; /* Включаем Flexbox для контейнера */
+  align-items: center; /* Выравниваем элементы по вертикали по центру (опционально) */
+  margin-bottom: 5px; /* Перенес отступ сюда */
+}
+
+.progress-bar-container {
+  /* Контейнер для полосы прогресса */
+  background-color: #eee;
+  border-radius: 5px;
+  height: 8px;
+  overflow: hidden;
+  flex-grow: 1; /* Занимает доступное пространство */
+  margin-right: 10px; /* Отступ справа от прогресс-бара */
+  display: flex; /* Добавил для выравнивания progress-percentage */
+  align-items: center; /* Добавил для выравнивания progress-percentage */
+}
+
+.progress-bar {
+  /* Полоса прогресса */
+  background-color: #6200EE; /* Пример: фиолетовый цвет */
+  height: 100%;
+  border-radius: 5px;
+  width: 0%; /* Ширина будет устанавливаться динамически */
+}
+
+.progress-percentage {
+  /* Процент прогресса */
+  font-size: 0.85em;
+  color: #777;
+  text-align: right;
+  margin-left: 5px; /* Добавил отступ слева от процента */
+}
+
+.continue-button {
+  /* Кнопка "Продолжить тест" */
+  background-color: #6200EE;
+  color: white;
+  border: none;
+  padding: 8px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+  
+  margin-top: 40px;
+  /* position: absolute; */
+  bottom: 20px;
+  left: 0; /* Прижимаем к левому краю */
+  width: 100%; /* Растягиваем на всю ширину родителя */
+  text-align: center; /* Центрируем текст внутри кнопки */
+}
+
+.continue-button:hover {
+  background-color: #4a148c;
+}
+
+.right-section {
+  /* Правая часть карточки */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Выравнивание по горизонтали по центру */
+}
+
+.generating-state {
+  /* Состояние генерации */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #555;
+  font-size: large;
+}
+
+.laptop-icon {
+  /* Стиль для иконки ноутбука */
+  width: 40px;
+  height: 40px;
+  background-color: #ddd; /* Заглушка для иконки */
+  border-radius: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.time-remaining {
+  /* Оставшееся время */
+  text-align: center;
+}
+
+.time-remaining .label {
+  font-size: 0.8em;
+  color: #777;
+  margin-bottom: 3px;
+}
+
+.time-remaining .time {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: bold;
+}

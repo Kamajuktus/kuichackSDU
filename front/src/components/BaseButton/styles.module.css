@@ -1,0 +1,10 @@
+.benefits {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  margin-right: 50px;
+  /* background-color: #FCFCFD; */
+  border-radius: 8px;
+  margin-top: 75px;
+}
