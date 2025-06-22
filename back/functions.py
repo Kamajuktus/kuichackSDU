@@ -4,10 +4,10 @@ from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 import os
 
-
+api_key = str(os.getenv("OPENAI_API_KEY"))
 client = OpenAI(
   base_url="https://openrouter.ai/api/v1",
-  api_key=os.getenv("OPENAI_API_KEY"),
+  api_key=api_key,
 )
 
 # Initialize memory buffer
