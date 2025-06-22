@@ -27,7 +27,12 @@ def read_root():
 @app.get("/api/question")
 def get_question(subject: str = "История Казахстана", difficulty: str = "Вопрос должен быть сложным и требовать глубоких знаний по теме.", repeated: bool = False, memory: List[str] = []):
     question = generate_question(subject, difficulty, repeated, memory)
-    return {"question": question}
+    return {"question": question[question.find("**Вопрос:**"): question.find("A)")],
+            "answer1": question[question.find("A)"): question.find("B)")],
+            "answer2": question[question.find("B)"): question.find("C)")],
+            "answer3": question[question.find("C)"): question.find("D)")],
+            "answer4": question[question.find("D)"): question.find("**Подсказки:**")]
+            }
 
 @app.post("/api/answer")
 def post_answer(question: str, user_answer: str, correct_answer: str, is_correct: bool):
