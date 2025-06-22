@@ -4,6 +4,8 @@ from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 import os
 
+load_dotenv(dotenv_path='secrets.env')
+
 api_key = str(os.getenv("OPENAI_API_KEY"))
 client = OpenAI(
   base_url="https://openrouter.ai/api/v1",
