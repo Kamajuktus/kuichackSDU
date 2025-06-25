@@ -49,40 +49,43 @@ function App() {
       })
   }
 
-  const submitAnswer = (userAnswer: string) => {
-    if (!data) return
+  const submitAnswer = (question: string, userAnswer: string, correctAnswer: string) => {
+    if (!data) {
+      console.warn("!!!Data is null inside submitAnswer!!!")
+      return
+    }
 
     setSubmitting(true)
 
-    // Determine correct answer (whichever answer contains the full correct one)
-    const correctAnswer = data.true_answer
-    const correct = data.hint3.includes(correctAnswer)
-    
-    console.log(data.question)
+    // Determine if the user's answer matches the correct answer
+    const isCorrect = userAnswer === correctAnswer
+
+    console.log(question)
     console.log("User answer:", userAnswer)
     console.log("Correct answer:", correctAnswer)
-    console.log("Is correct:", correct)
+    console.log("Is correct:", isCorrect)
 
     fetch('/api/answer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        question: data.question,
+        question: question,
         user_answer: userAnswer,
         correct_answer: correctAnswer,
-        correct: correct,
+        is_correct: isCorrect,
       }),
     })
       .then(res => {
         if (!res.ok) throw new Error('Ошибка при отправке ответа')
       })
+      .then(() => {
+        setTimeout(() => getQuestion(), 500) // Delay slightly to ensure logs print
+      })
       .catch(err => {
-        console.error(err)
         setError('Ошибка при отправке ответа')
       })
       .finally(() => {
         setSubmitting(false)
-        getQuestion() // Load next question
       })
   }
 
@@ -100,10 +103,10 @@ function App() {
         <div>
           <p>{data.question}</p>
           <ul>
-            <li><button onClick={() => submitAnswer(data.answer1)} disabled={submitting}> {data.answer1} </button></li>
-            <li><button onClick={() => submitAnswer(data.answer2)} disabled={submitting}> {data.answer2} </button></li>
-            <li><button onClick={() => submitAnswer(data.answer3)} disabled={submitting}> {data.answer3} </button></li>
-            <li><button onClick={() => submitAnswer(data.answer4)} disabled={submitting}> {data.answer4} </button></li>
+            <li><button onClick={() => submitAnswer(data.question, data.answer1, data.true_answer)} disabled={submitting}> {data.answer1} </button></li>
+            <li><button onClick={() => submitAnswer(data.question, data.answer2, data.true_answer)} disabled={submitting}> {data.answer2} </button></li>
+            <li><button onClick={() => submitAnswer(data.question, data.answer3, data.true_answer)} disabled={submitting}> {data.answer3} </button></li>
+            <li><button onClick={() => submitAnswer(data.question, data.answer4, data.true_answer)} disabled={submitting}> {data.answer4} </button></li>
           </ul>
 
           <div style={{ marginTop: '1em' }}>

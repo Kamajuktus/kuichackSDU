@@ -28,7 +28,7 @@ def read_root():
 
 # Endpoints
 @app.get("/api/question")
-def get_question(subject: str = "История Казахстана", difficulty: str = "Вопрос должен быть сложным и требовать глубоких знаний по теме.", repeated: bool = False, memory: List[str] = []):
+async def get_question(subject: str = "История Казахстана", difficulty: str = "Вопрос должен быть сложным и требовать глубоких знаний по теме.", repeated: bool = False, memory: List[str] = []):
     question = generate_question(subject, difficulty, repeated, memory)
     print(question)
     return {"question": question[question.find("**Вопрос:**")+12: question.find("A)")],
@@ -43,7 +43,7 @@ def get_question(subject: str = "История Казахстана", difficult
             }
 
 @app.post("/api/answer")
-def post_answer(payload : AnswerSubmission):
+async def post_answer(payload : AnswerSubmission):
     answer = record_question_answer(
         payload.question, 
         payload.user_answer, 
@@ -51,6 +51,7 @@ def post_answer(payload : AnswerSubmission):
         payload.is_correct
     )
     return {"answer": answer}
+
 
 
 difficulty_hard = "Вопрос должен быть сложным и требовать глубоких знаний по теме."
