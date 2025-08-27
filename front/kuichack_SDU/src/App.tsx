@@ -81,7 +81,7 @@ function App() {
       .then(() => {
         setTimeout(() => getQuestion(), 500) // Delay slightly to ensure logs print
       })
-      .catch(err => {
+      .catch(() => {
         setError('Ошибка при отправке ответа')
       })
       .finally(() => {
