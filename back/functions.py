@@ -128,6 +128,10 @@ def generate_question(subject, difficulty, repeated = False, memory = []) -> str
             )
 
     if 'completion' in locals():
-        return str(completion.choices[0].message.content)
+        try:
+            return str(completion.choices[0].message.content)
+        except Exception as e:
+            print(f"Error extracting content: {e}")
+            return str("None")
     else:
-        return None
+        return str("None")
